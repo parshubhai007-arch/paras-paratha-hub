@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paras Paratha Hub</title>
+  <style>
+    body {background:#0f0f0f; color:#fff; font-family:'Poppins', sans-serif; margin:0;}
+    header {background:#111; padding:15px 30px; position:sticky; top:0;}
+    nav {display:flex; justify-content:space-between; align-items:center;}
+    .logo {font-size:1.8rem; font-weight:bold; color:#ffcc00; text-shadow:0 0 15px #ffcc00;}
+    nav ul {list-style:none; display:flex; gap:25px;}
+    nav ul li a {color:#fff; text-decoration:none;}
+    nav ul li a:hover {color:#ffcc00;}
+    
+    .hero {text-align:center; padding:80px 20px; background:linear-gradient(135deg,#ff004c,#ffcc00);}
+    .hero h1 {font-size:3rem;}
+    .hero h1 span {background:#ffcc00; color:#000; padding:5px 12px; border-radius:5px;}
+    .hero p {font-size:1.2rem;}
+    .hero button {margin-top:20px; padding:12px 25px; border:none; background:#000; color:#ffcc00; cursor:pointer;}
+    .hero button:hover {background:#ffcc00; color:#000;}
+    
+    #menu {padding:50px 20px; text-align:center;}
+    #menu h2 {font-size:2.2rem; margin-bottom:30px; color:#ffcc00; text-shadow:0 0 10px #ffcc00;}
+    .menu-items {display:flex; justify-content:center; gap:30px; flex-wrap:wrap;}
+    .item {background:#1a1a1a; padding:20px; border-radius:12px; width:220px; cursor:pointer;}
+    .item:hover {transform:scale(1.05); box-shadow:0 0 20px #ffcc00;}
+    .item img {width:100%; height:150px; object-fit:cover; border-radius:10px;}
+    .item h3 {color:#ffcc00; margin:10px 0;}
+    
+    /* Modal */
+    .modal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); justify-content:center; align-items:center;}
+    .modal-content {background:#1a1a1a; padding:25px; border-radius:12px; width:350px; text-align:center; box-shadow:0 0 20px #ffcc00;}
+    .modal-content img {width:100%; border-radius:10px; margin-bottom:15px;}
+    .modal-content h3 {color:#ffcc00;}
+    .close-btn {margin-top:15px; background:#ff004c; color:#fff; border:none; padding:10px 20px; cursor:pointer; border-radius:8px;}
+    .close-btn:hover {background:#ffcc00; color:#000;}
+    
+    #about {padding:60px 20px; text-align:center;}
+    #about h2 {font-size:2rem; margin-bottom:20px; color:#ffcc00; text-shadow:0 0 10px #ffcc00;}
+    #about p {max-width:700px; margin:auto; font-size:1.1rem; line-height:1.8;}
+    
+    #contact {padding:60px 20px; text-align:center;}
+    #contact h2 {font-size:2rem; margin-bottom:20px; color:#ffcc00; text-shadow:0 0 10px #ffcc00;}
+    #contact p {font-size:1.2rem; margin:10px 0;}
+    #contact strong {color:#ff004c; text-shadow:0 0 10px #ff004c;}
+    
+    footer {background:#111; text-align:center; padding:20px; color:#aaa;}
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">🥙 Paras Paratha Hub</div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <h1>Welcome to <span>Paras Paratha Hub</span></h1>
+    <p>Delicious parathas – fresh, hot & affordable!</p>
+    <button onclick="alert('Order now!')">🥘 Order Now</button>
+  </section>
+
+  <section id="menu">
+    <h2>Our Menu</h2>
+    <div class="menu-items">
+      <div class="item" onclick="openModal('aloo')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Aloo_paratha.jpg" alt="Aloo Paratha">
+        <h3>Aloo Paratha</h3>
+        <p>₹40 per piece</p>
+      </div>
+      <div class="item" onclick="openModal('paneer')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Paneer_paratha.jpg" alt="Paneer Paratha">
+        <h3>Paneer Paratha</h3>
+        <p>₹60 per piece</p>
+      </div>
+      <div class="item" onclick="openModal('gobhi')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Gobhi_paratha.jpg" alt="Gobhi Paratha">
+        <h3>Gobhi Paratha</h3>
+        <p>₹50 per piece</p>
+      </div>
+      <div class="item" onclick="openModal('soda')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Soft_drink.jpg" alt="Soda">
+        <h3>Soda</h3>
+        <p>₹20 per glass</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div id="menuModal" class="modal">
+    <div class="modal-content">
+      <img id="modalImg" src="" alt="">
+      <h3 id="modalTitle"></h3>
+      <p id="modalPrice"></p>
+      <p id="modalDesc"></p>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      Welcome to <strong>Paras Paratha Hub</strong> – the ultimate destination for authentic, homemade-style parathas.  
+      Founded in 2020 by <strong>Paras</strong>, our hub is built on a simple idea: serve hot, fresh, and affordable parathas that remind you of home.  
+    </p>
+    <p>
+      Every paratha is prepared with love, using fresh ingredients and traditional recipes. Whether it’s the classic <em>Aloo Paratha</em>, the rich <em>Paneer Paratha</em>, or the flavorful <em>Gobhi Paratha</em>, we make sure each bite brings comfort and taste.  
+    </p>
+    <p>
+      At Paras Paratha Hub, quality and speed go hand in hand. We believe good food should be accessible to everyone – that’s why our prices are kept pocket-friendly without compromising on taste.  
+    </p>
+    <p>
+      So, come join us and experience the warmth of homemade parathas, served with a smile.  
+    </p>
+  </section>
+ <script>
+    function openModal(item) {
+      let title="", price="", desc="", img="";
+      if(item==="aloo"){
+        title="Aloo Paratha"; price="₹40 per piece";
+        desc="Soft wheat bread stuffed with spiced mashed potatoes, served hot with butter & curd.";
+        img="https://upload.wikimedia.org/wikipedia/commons/5/5d/Aloo_paratha.jpg";
+      }
+      else if(item==="paneer"){
+        title="Paneer Paratha"; price="₹60 per piece";
+        desc="Delicious paratha filled with fresh paneer and spices, perfect for a wholesome meal.";
+        img="https://upload.wikimedia.org/wikipedia/commons/0/0a/Paneer_paratha.jpg";
+      }
+      else if(item==="gobhi"){
+        title="Gobhi Paratha"; price="₹50 per piece";
+        desc="Crispy paratha stuffed with seasoned cauliflower, served with pickle & curd.";
+        img="https://upload.wikimedia.org/wikipedia/commons/9/9d/Gobhi_paratha.jpg";
+      }
+      else if(item==="soda"){
+        title="Soda"; price="₹20 per glass";
+        desc="Refreshing cold drink to complement your hot parathas.";
+        img="https://upload.wikimedia.org/wikipedia/commons/0/0b
+[8:47 pm, 12/01/2026] Javelin thrower 🫡💪: 0b/Soft_drink.jpg";
+      }
+      document.getElementById("modalTitle").innerText=title;
+      document.getElementById("modalPrice").innerText=price;
+      document.getElementById("modalDesc").innerText=desc;
+      document.getElementById("modalImg").src=img;
+      document.getElementById("menuModal").style.display="flex";
+    }
+    function closeModal(){
+      document.getElementById("menuModal").style.display="none";
+    }
+  </script>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: info@parasparathahub.com</p>
+    <p>Phone: <strong>8588880918</strong></p>
+    <p>Owner: <strong>Paras</strong></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Paras Paratha Hub. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function openModal(item) {
+      let title="", price="", desc="", img="";
+      if(item==="aloo"){
+        title="Aloo Paratha"; price="₹40 per piece";
+        desc="Soft wheat bread stuffed with spiced mashed potatoes, served hot with butter & curd.";
+        img="https://upload.wikimedia.org/wikipedia/commons/5
